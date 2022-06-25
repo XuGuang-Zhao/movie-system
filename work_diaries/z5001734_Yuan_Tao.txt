@@ -1,0 +1,17 @@
+Week 1
+The group is form.
+I created Jira & Github accounts. I then also created the Jira site and added all teammates.
+We have agreed tentatively upon the Movie Finder System project option.
+We have briefly discussed the tech stack options including frontend (NodeJS, dash) and backend (Python, Javascript, SQL-Flask).
+
+Week 2
+I am elected as Scrum Master and Github Maintainer.
+We have discussed in more depth about the project scope, including the list of functions to achieve and how.
+I have then created a list of epics and user stories on Jira to be refined further by the team in the next discussion.
+
+Week 3
+We have discussed the novel functionalities and come up with 3 proposal
+We have written up all user stories
+We have finished the proposal - I have submitted the proposal
+I have started to code the Flask db models used in the project
+I have downloaded IMDb public data to be used for mock

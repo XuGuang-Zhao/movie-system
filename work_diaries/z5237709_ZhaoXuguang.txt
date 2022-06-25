@@ -1,0 +1,9 @@
+Week 1
+We formed the group and select the Movie Finder System as our project topic.
+We discussed the programming framework, and decided to use JavaScript as front-end programming language, and python as back-end programming language.
+
+
+Week 2
+We proposed 8 functions, and assign task to everyone.
+I will be responsible for the front-end part of the system.
+I decide to use React framework, and use AntDesign as UI library.

@@ -1,0 +1,12 @@
+Week 1
+Didn't have a group. 
+Communicated with lecturer to organise a suitable group/timeslot.
+
+Week 2
+Joined the group.
+Discussed project details and communication tools.
+
+Week 3
+Discussed with team on all core and novel functionality.
+Researched background for IMDb and Rotten Tomatoes and wrote background section for project proposal document.
+Wrote acceptance criteria for streaming service novel functionality.

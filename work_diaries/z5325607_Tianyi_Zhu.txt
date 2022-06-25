@@ -1,0 +1,10 @@
+Week 1
+We formed the group and selected the Movie Finder System as our project. 
+
+Week 2
+We disscussed the scope of our project. The eight functionalities are confirmed. 
+We selected Flask for the backend. I continued to study Flask this week. 
+
+Week 3
+We started to write the proposal. 
+I filled in the user storys of user banned list and movie banned list. I also drew a flow diagram for the user interface.
