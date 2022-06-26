@@ -1,41 +1,34 @@
-import React, { useCallback } from 'react';
-import { Layout, Form, Input, Button } from 'antd';
-import { SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { useHistory } from 'react-router-dom';
+import React, {useCallback} from 'react';
+import {Layout, Form, Input, Button} from 'antd';
+import {SearchOutlined as SearchIcon} from '@ant-design/icons';
+import {useHistory} from 'react-router-dom';
 import styled from "styled-components";
 import qs from 'query-string';
+import {getMovieListRequest} from "../api/request";
 
 const Home = () => {
-    const { Content, Footer } = Layout;
+    const {Content, Footer} = Layout;
     const history = useHistory();
     const onFinish = useCallback((values) => {
-        const { name, genre, actor, description, director } = values;
+        const {name, genre, actor, description, director} = values;
         const queryStr = qs.stringify(values);
         const url = `/search/?${queryStr}`;
 
-        fetch('http://localhost:5000/search/search', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                name: name || '',
-                genre: genre || '',
-                actor: actor || '',
-                director: director || '',
-                description: description || '',
-            }),
+        const ContentData = {
+            name: name || '',
+            genre: genre || '',
+            actor: actor || '',
+            director: director || '',
+            description: description || '',
+        }
+
+        getMovieListRequest('POST', ContentData, '/search/search').then(data => {
+            if (data) {
+                history.push(url);
+                localStorage.setItem('movie_list', JSON.stringify(data.movie_list));
+                localStorage.setItem('filter_list', JSON.stringify(data.filter_list));
+            }
         })
-            .then(r => r.json())
-            .then(data => {
-                if (data.error) {
-                    console.log(data.error);
-                } else {
-                    history.push(url);
-                    localStorage.setItem('movie_list', JSON.stringify(data.movie_list));
-                    localStorage.setItem('filter_list', JSON.stringify(data.filter_list));
-                }
-            })
     }, [history])
 
     return (
@@ -43,23 +36,23 @@ const Home = () => {
             <div className='backgroundImg'>
                 <Content>
                     <SearchContainer>
-                        <SearchForm labelCol={{ span: 12 }} onFinish={onFinish}>
-                            <SearchFormItem name="name" label='Movie Name: '><SearchInputBox placeholder="Movie Name" /></SearchFormItem>
+                        <SearchForm labelCol={{span: 12}} onFinish={onFinish}>
+                            <SearchFormItem name="name" label='Movie Name: '><SearchInputBox placeholder="Movie Name"/></SearchFormItem>
                             <SearchFormItem name="genre" label='Genre: '><SearchInputBox
-                                placeholder="Genre" /></SearchFormItem>
+                                placeholder="Genre"/></SearchFormItem>
                             <SearchFormItem name="actor" label='Actor: '><SearchInputBox
-                                placeholder="Actor" /></SearchFormItem>
+                                placeholder="Actor"/></SearchFormItem>
                             <SearchFormItem name="description" label='Description: '><SearchInputBox
-                                placeholder="Description" /></SearchFormItem>
-                            <SearchFormItem name="director" label='Director: '><SearchInputBox placeholder="Director" /></SearchFormItem>
+                                placeholder="Description"/></SearchFormItem>
+                            <SearchFormItem name="director" label='Director: '><SearchInputBox placeholder="Director"/></SearchFormItem>
                             <SearchButton type="primary" htmlType="submit">
-                                <SearchIcon />
+                                <SearchIcon/>
                             </SearchButton>
                         </SearchForm>
                     </SearchContainer>
                 </Content>
             </div>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
     )
 }

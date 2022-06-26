@@ -3,7 +3,6 @@ import { Card, Rate } from 'antd';
 import React from 'react';
 
 export default function MovieCard(movieData) {
-    console.log(movieData);
     const { id, name, actor, genres, director, image, rating } = movieData?.movieData;
     const jumpToMovie = (id) => {
         console.log(id);
@@ -13,7 +12,7 @@ export default function MovieCard(movieData) {
             <Card
                 hoverable
                 title={`${name}`}
-                style={{ width: 300 }}
+                style={{ width: 250 }}
                 cover={<img src={image} style={{ height: 300 }} />}
                 onClick={() => jumpToMovie(id)}
             >
@@ -21,7 +20,7 @@ export default function MovieCard(movieData) {
                 <p>Director: {`${director}`}</p>
                 <p>Actors: {`${actor}`}</p>
                 <p>Rate: {`${rating}`} <Rate allowHalf disabled value={rating / 2} /> </p>
-                
+
             </Card>
         </>
     )
