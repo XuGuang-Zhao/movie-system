@@ -1,6 +1,5 @@
 @import '~antd/dist/antd.css';
 @import url('./styles/Home.css');
-@import url(./styles/Header.css);
 
 body {
   margin: 0;

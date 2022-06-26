@@ -1,22 +1,18 @@
 import React from 'react';
-import {MovieListCard} from "../component/MovieCard";
+import MovieCard from "../component/MovieCard";
 import styled from "styled-components";
 
 const SearchResult = () => {
     const movieList = JSON.parse(localStorage.getItem('movie_list')) || '';
-    const filterList = JSON.parse(localStorage.getItem('filter_list')) || '';
-
-    console.log(movieList);
-    // console.log(filterList);
-
+    // const filterList = JSON.parse(localStorage.getItem('filter_list')) || '';
+    
     return (
         <Container>
-            This is Search Result Page!
             <StyledMovieCard>
                 {
                     movieList.map(movie => (
                         <MovieItem key={movie.id}>
-                            <MovieListCard movieData={movie}/>
+                            <MovieCard movieData={movie} />
                         </MovieItem>
                     ))
                 }

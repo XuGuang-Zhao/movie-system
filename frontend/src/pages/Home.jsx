@@ -1,23 +1,17 @@
-import React, {useCallback, useEffect} from 'react';
-import {Layout, Form, Input, Button} from 'antd';
-import {SearchOutlined as SearchIcon} from '@ant-design/icons';
-import {useHistory} from 'react-router-dom';
+import React, { useCallback } from 'react';
+import { Layout, Form, Input, Button } from 'antd';
+import { SearchOutlined as SearchIcon } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
 import styled from "styled-components";
 import qs from 'query-string';
 
 const Home = () => {
-    const {Content, Footer} = Layout;
+    const { Content, Footer } = Layout;
     const history = useHistory();
     const onFinish = useCallback((values) => {
-        const {name, genre, actor, description, director} = values;
+        const { name, genre, actor, description, director } = values;
         const queryStr = qs.stringify(values);
         const url = `/search/?${queryStr}`;
-
-        console.log("name", name);
-        console.log("genre", genre);
-        console.log("actor", actor);
-        console.log("description", description);
-        console.log("director", director);
 
         fetch('http://localhost:5000/search/search', {
             method: 'POST',
@@ -42,30 +36,30 @@ const Home = () => {
                     localStorage.setItem('filter_list', JSON.stringify(data.filter_list));
                 }
             })
-    }, [])
+    }, [history])
 
     return (
         <Layout>
             <div className='backgroundImg'>
                 <Content>
                     <SearchContainer>
-                        <SearchForm labelCol={{span: 12}} onFinish={onFinish}>
-                            <SearchFormItem name="name" label='Movie Name: '><SearchInputBox placeholder="Movie Name"/></SearchFormItem>
+                        <SearchForm labelCol={{ span: 12 }} onFinish={onFinish}>
+                            <SearchFormItem name="name" label='Movie Name: '><SearchInputBox placeholder="Movie Name" /></SearchFormItem>
                             <SearchFormItem name="genre" label='Genre: '><SearchInputBox
-                                placeholder="Genre"/></SearchFormItem>
+                                placeholder="Genre" /></SearchFormItem>
                             <SearchFormItem name="actor" label='Actor: '><SearchInputBox
-                                placeholder="Actor"/></SearchFormItem>
+                                placeholder="Actor" /></SearchFormItem>
                             <SearchFormItem name="description" label='Description: '><SearchInputBox
-                                placeholder="Description"/></SearchFormItem>
-                            <SearchFormItem name="director" label='Director: '><SearchInputBox placeholder="Director"/></SearchFormItem>
+                                placeholder="Description" /></SearchFormItem>
+                            <SearchFormItem name="director" label='Director: '><SearchInputBox placeholder="Director" /></SearchFormItem>
                             <SearchButton type="primary" htmlType="submit">
-                                <SearchIcon/>
+                                <SearchIcon />
                             </SearchButton>
                         </SearchForm>
                     </SearchContainer>
                 </Content>
             </div>
-            <Footer style={{textAlign: 'center'}}>Ant Design ©2018 Created by Ant UED</Footer>
+            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
     )
 }
