@@ -1,28 +1,98 @@
 import React from 'react';
 import { Layout, Form, Input, Button } from 'antd';
-import { SearchOutlined as SearchIcon} from '@ant-design/icons';
+import { SearchOutlined as SearchIcon } from '@ant-design/icons';
+import { useHistory } from 'react-router-dom';
+import styled from "styled-components";
+import qs from 'query-string';
 
 const Home = () => {
-    const { Content, Footer } = Layout;
+  const { Content, Footer } = Layout;
+  const history = useHistory();
+  const onFinish = (values) => {
+    const { name, genre, actor, description, director } = values;
+    const queryStr = qs.stringify(values);
+    const url = `/search/?${queryStr}`;
     
-    return (
-        <Layout>
-            <div className='backgroundImg'>
-                <div className='search-form'>
-                    <Form layout='inline' labelCol={{ span: 12 }} >
-                        <Form.Item name={'movieName'} label='Movie Name: '><Input placeholder="Movie Name" /></Form.Item>
-                        <Form.Item name={'genre'} label='Genre: '><Input placeholder="Genre" /></Form.Item>
-                        <Form.Item name={'actor'} label='Actor: '><Input placeholder="Actor" /></Form.Item>
-                        <Form.Item name={'description'} label='Description: '><Input placeholder="Description" /> </Form.Item>
-                        <Button type="primary" htmlType="submit">
-                            <SearchIcon />
-                        </Button>
-                    </Form>
-                </div>
-            </div>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-        </Layout>
-    )
+    console.log("name", name);
+    console.log("genre", genre);
+    console.log("actor", actor);
+    console.log("description", description);
+    console.log("director", director);
+
+    fetch('http://localhost:5000/search/search', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name || '',
+        genre: genre || '',
+        actor: actor || '',
+        description: description || '',
+        director: director || ''
+      }),
+    })
+      .then(r => r.json())
+      .then(data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          console.log("success");
+          console.log(data);
+          history.push(url);
+        }
+      })
+  };
+
+  return (
+    <Layout>
+      <div className='backgroundImg'>
+        <Content>
+          <SearchContainer>
+            <SearchForm labelCol={{ span: 12 }} onFinish={onFinish}>
+              <SearchFormItem name="name" label='Movie Name: '><SearchInputBox placeholder="Movie Name" /></SearchFormItem>
+              <SearchFormItem name="genre" label='Genre: '><SearchInputBox placeholder="Genre" /></SearchFormItem>
+              <SearchFormItem name="actor" label='Actor: '><SearchInputBox placeholder="Actor" /></SearchFormItem>
+              <SearchFormItem name="description" label='Description: '><SearchInputBox placeholder="Description" /></SearchFormItem>
+              <SearchFormItem name="director" label='Director: '><SearchInputBox placeholder="Director" /></SearchFormItem>
+              <SearchButton type="primary" htmlType="submit">
+                <SearchIcon />
+              </SearchButton>
+            </SearchForm>
+          </SearchContainer>
+        </Content>
+      </div>
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    </Layout>
+  )
 }
 
 export default Home;
+
+const SearchContainer = styled.div`
+  width: 80%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 55px;
+  padding: 15px 0 0 75px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 50px auto 0;
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
+`
+
+const SearchForm = styled(Form)`
+  flex-direction: column;
+`
+const SearchFormItem = styled(Form.Item)`
+  display: table;
+  margin:0 auto;
+`
+
+const SearchInputBox = styled(Input)`
+  width: 200px;
+`
+const SearchButton = styled(Button)`
+  display: table;
+  width: 140px;
+  margin:10px auto;
+`
