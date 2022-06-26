@@ -28,8 +28,8 @@ const Home = () => {
         name: name || '',
         genre: genre || '',
         actor: actor || '',
+        director: director || '',
         description: description || '',
-        director: director || ''
       }),
     })
       .then(r => r.json())
@@ -37,9 +37,9 @@ const Home = () => {
         if (data.error) {
           console.log(data.error);
         } else {
-          console.log("success");
-          console.log(data);
           history.push(url);
+          localStorage.setItem('movie_list', JSON.stringify(data.movie_list));
+          localStorage.setItem('filter_list', JSON.stringify(data.filter_list));
         }
       })
   };

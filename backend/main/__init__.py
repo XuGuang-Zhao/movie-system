@@ -1,12 +1,13 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy  # Mapping to the database
 from flask_cors import CORS
-import os
-
+from os import path
 
 db = SQLAlchemy()  # Generate a db instance and bind it to the app
-db_path = '..\\\\backend\\\\main\\\\test.db'
-sqlalchemy_db_uri = "sqlite:///" + os.path.abspath(db_path)
+basedir = path.abspath(path.dirname(__file__)) # Get this file path
+# db_path = '..\\\\backend\\\\main\\\\test.db'
+# sqlalchemy_db_uri = "sqlite:///" + os.path.abspath(db_path)
+sqlalchemy_db_uri = 'sqlite:///' + path.join(basedir, 'test.db')
 
 class SingletonApp(object):
     """
