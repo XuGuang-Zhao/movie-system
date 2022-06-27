@@ -6,7 +6,7 @@ import { Content } from "antd/es/layout/layout";
 import { useHistory } from "react-router-dom";
 import { useCallback } from "react";
 import qs from 'query-string';
-import {getMovieListRequest} from "../api/request";
+import { Request } from "../api/request";
 
 export function SearchBox() {
     const history = useHistory();
@@ -21,7 +21,7 @@ export function SearchBox() {
             director: director || '',
             description: description || '',
         }
-        getMovieListRequest('POST', ContentData, '/search/search').then(data => {
+        Request('POST', ContentData, '/search/search').then(data => {
             if (data) {
                 history.push(url);
                 localStorage.setItem('movie_list', JSON.stringify(data.movie_list));
@@ -68,7 +68,6 @@ const SearchContainer = styled(Content)`
 
 const SearchForm = styled(Form)`
   margin-bottom: 12px;
-    
 `
 const SearchFormItem = styled(Form.Item)`
   margin: 12px;

@@ -1,6 +1,6 @@
 import {message} from 'antd';
 
-export function getMovieListRequest(method, data, specificUrl,) {
+export function Request(method, data, specificUrl,) {
     const action = {
         method: method,
         headers: {
@@ -20,5 +20,5 @@ export function getMovieListRequest(method, data, specificUrl,) {
             }
             return data;
         }).catch(e => message.error(e.message));
-
 }
+

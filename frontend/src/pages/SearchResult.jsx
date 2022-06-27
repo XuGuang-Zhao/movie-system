@@ -2,14 +2,17 @@ import React from 'react';
 import MovieCard from "../component/MovieCard";
 import styled from "styled-components";
 import { SearchBox } from "../component/SearchBox";
+import { FilterBox } from '../component/FilterBox';
+
 
 const SearchResult = () => {
     const movieList = JSON.parse(localStorage.getItem('movie_list')) || '';
-    // const filterList = JSON.parse(localStorage.getItem('filter_list')) || '';
+    const filterList = JSON.parse(localStorage.getItem('filter_list')) || '';
 
     return (
         <Container>
             <SearchBox />
+            <FilterBox filterList={filterList} />
             <StyledMovieCard>
                 {
                     movieList.length === 0 && (<ErrorPromote>No search results were found, try another keyword</ErrorPromote>)
@@ -43,8 +46,9 @@ const StyledMovieCard = styled.div`
 const MovieItem = styled.div`
   margin: 20px;
 `
-const ErrorPromote = styled.p `
+const ErrorPromote = styled.p`
   font-size: 16px;
   margin: 0 auto;
   color: red;
+  font-weight: bolder;
 `
