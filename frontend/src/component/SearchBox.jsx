@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React from "react";
 import styled from "styled-components";
 import {Button, Form, Input} from "antd";
 import {SearchOutlined as SearchIcon} from '@ant-design/icons';
@@ -11,7 +11,6 @@ export function SearchBox(onFinish) {
                     <SearchFormItem name="name" label='Movie Name: '>
                         <Input placeholder="Movie Name"/>
                     </SearchFormItem>
-
                     <SearchFormItem name="genre" label='Genre: '>
                         <Input placeholder="Genre"/>
                     </SearchFormItem>
@@ -39,14 +38,13 @@ export function SearchBox(onFinish) {
 
 
 const SearchContainer = styled(Content)`
-  width: 80%;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 55px;
-  padding: 15px 0 0 75px;
+  width: 60%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  border: 2px solid #c4c7ce;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 15px 0 0 75px;
   margin: 10px auto 0;
-  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
 `
 
 const SearchForm = styled(Form)`

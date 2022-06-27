@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import MovieCard from "../component/MovieCard";
 import styled from "styled-components";
 import {SearchBox} from "../component/SearchBox";

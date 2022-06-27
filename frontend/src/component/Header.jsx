@@ -15,7 +15,7 @@ const AppHeader = () => {
   return (
     <HeaderContainer>
       <Header className="header" style={{ opacity: '0.8' }}>
-        <Logo>Faze Clan Movie System</Logo>
+        <Logo onClick={() => jumpToPage('/')} >Faze Clan Movie System</Logo>
         <MenusContainer theme="dark" mode="horizontal" style={{ justifyContent: 'end' }} >
           <Menu.Item key="1" > <UserOutlined />  Login</Menu.Item>
           <Menu.Item key="2" > <UserAddOutlined />  Register</Menu.Item>
@@ -35,6 +35,7 @@ const HeaderContainer = styled(Layout)`
 
 const Logo = styled.div`
   display: inline-block;
+  cursor: pointer;
   text-align: center;
   width: 300px;
   height: 50px;
