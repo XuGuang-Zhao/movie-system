@@ -1,38 +1,57 @@
 import React from "react";
 import styled from "styled-components";
-import {Button, Form, Input} from "antd";
-import {SearchOutlined as SearchIcon} from '@ant-design/icons';
-import {Content} from "antd/es/layout/layout";
+import { Button, Form, Input } from "antd";
+import { SearchOutlined as SearchIcon } from '@ant-design/icons';
+import { Content } from "antd/es/layout/layout";
+import { useHistory } from "react-router-dom";
+import { useCallback } from "react";
+import qs from 'query-string';
+import {getMovieListRequest} from "../api/request";
 
-export function SearchBox(onFinish) {
+export function SearchBox() {
+    const history = useHistory();
+    const onFinish = useCallback((values) => {
+        const { name, genre, actor, description, director } = values;
+        const queryStr = qs.stringify(values);
+        const url = `/search/?${queryStr}`;
+        const ContentData = {
+            name: name || '',
+            genre: genre || '',
+            actor: actor || '',
+            director: director || '',
+            description: description || '',
+        }
+        getMovieListRequest('POST', ContentData, '/search/search').then(data => {
+            if (data) {
+                history.push(url);
+                localStorage.setItem('movie_list', JSON.stringify(data.movie_list));
+                localStorage.setItem('filter_list', JSON.stringify(data.filter_list));
+            }
+        })
+    }, [history])
     return (
-            <SearchContainer>
-                <SearchForm layout='inline' labelCol={{span: 12}} onFinish={onFinish}>
-                    <SearchFormItem name="name" label='Movie Name: '>
-                        <Input placeholder="Movie Name"/>
-                    </SearchFormItem>
-                    <SearchFormItem name="genre" label='Genre: '>
-                        <Input placeholder="Genre"/>
-                    </SearchFormItem>
-
-                    <SearchFormItem name="actor" label='Actor: '>
-                        <Input
-                            placeholder="Actor"/>
-                    </SearchFormItem>
-
-                    <SearchFormItem name="description" label='Description: '>
-                        <Input placeholder="Description"/>
-                    </SearchFormItem>
-
-                    <SearchFormItem name="director" label='Director: '>
-                        <Input placeholder="Director"/>
-                    </SearchFormItem>
-
-                    <SearchButton type="primary" htmlType="submit">
-                        <SearchIcon/>
-                    </SearchButton>
-                </SearchForm>
-            </SearchContainer>
+        <SearchContainer>
+            <SearchForm layout='inline' labelCol={{ span: 12 }} onFinish={onFinish}>
+                <SearchFormItem name="name" label='Movie Name: '>
+                    <Input placeholder="Movie Name" />
+                </SearchFormItem>
+                <SearchFormItem name="genre" label='Genre: '>
+                    <Input placeholder="Genre" />
+                </SearchFormItem>
+                <SearchFormItem name="actor" label='Actor: '>
+                    <Input placeholder="Actor" />
+                </SearchFormItem>
+                <SearchFormItem name="description" label='Description: '>
+                    <Input placeholder="Description" />
+                </SearchFormItem>
+                <SearchFormItem name="director" label='Director: '>
+                    <Input placeholder="Director" />
+                </SearchFormItem>
+                <SearchButton type="primary" htmlType="submit">
+                    <SearchIcon />
+                </SearchButton>
+            </SearchForm>
+        </SearchContainer>
     )
 }
 
@@ -48,11 +67,11 @@ const SearchContainer = styled(Content)`
 `
 
 const SearchForm = styled(Form)`
-  margin-bottom: 15px;
+  margin-bottom: 10px;
     
 `
 const SearchFormItem = styled(Form.Item)`
-  margin: 15px;
+  margin: 10px;
 `
 
 const SearchButton = styled(Button)`

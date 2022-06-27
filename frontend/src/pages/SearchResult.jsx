@@ -1,7 +1,7 @@
 import React from 'react';
 import MovieCard from "../component/MovieCard";
 import styled from "styled-components";
-import {SearchBox} from "../component/SearchBox";
+import { SearchBox } from "../component/SearchBox";
 
 const SearchResult = () => {
     const movieList = JSON.parse(localStorage.getItem('movie_list')) || '';
@@ -9,12 +9,15 @@ const SearchResult = () => {
 
     return (
         <Container>
-            <SearchBox/>
+            <SearchBox />
             <StyledMovieCard>
+                {
+                    movieList.length === 0 && (<ErrorPromote>No search results were found, try another keyword</ErrorPromote>)
+                }
                 {
                     movieList.map(movie => (
                         <MovieItem key={movie.id}>
-                            <MovieCard movieData={movie}/>
+                            <MovieCard movieData={movie} />
                         </MovieItem>
                     ))
                 }
@@ -39,4 +42,9 @@ const StyledMovieCard = styled.div`
 `
 const MovieItem = styled.div`
   margin: 20px;
+`
+const ErrorPromote = styled.p `
+  font-size: 16px;
+  margin: 0 auto;
+  color: red;
 `

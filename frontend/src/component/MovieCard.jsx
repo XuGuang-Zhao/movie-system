@@ -4,6 +4,7 @@ import React from 'react';
 
 export default function MovieCard(movieData) {
     const { id, name, actor, genres, director, image, rating } = movieData?.movieData;
+    // TODO: JUMP TO MOVIE INFO
     const jumpToMovie = (id) => {
         console.log(id);
     }
@@ -20,7 +21,6 @@ export default function MovieCard(movieData) {
                 <p>Director: {`${director}`}</p>
                 <p>Actors: {`${actor}`}</p>
                 <p>Rate: {`${rating}`} <Rate allowHalf disabled value={rating / 2} /> </p>
-
             </Card>
         </>
     )

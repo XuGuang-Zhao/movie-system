@@ -13,7 +13,6 @@ const Home = () => {
         const {name, genre, actor, description, director} = values;
         const queryStr = qs.stringify(values);
         const url = `/search/?${queryStr}`;
-
         const ContentData = {
             name: name || '',
             genre: genre || '',
@@ -21,7 +20,6 @@ const Home = () => {
             director: director || '',
             description: description || '',
         }
-
         getMovieListRequest('POST', ContentData, '/search/search').then(data => {
             if (data) {
                 history.push(url);
