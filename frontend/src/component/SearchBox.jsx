@@ -61,20 +61,20 @@ const SearchContainer = styled(Content)`
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   border: 2px solid #c4c7ce;
   background-color: #fff;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 15px 0 0 75px;
-  margin: 10px auto 0;
+  margin: 12px auto 0;
 `
 
 const SearchForm = styled(Form)`
-  margin-bottom: 10px;
+  margin-bottom: 12px;
     
 `
 const SearchFormItem = styled(Form.Item)`
-  margin: 10px;
+  margin: 12px;
 `
 
 const SearchButton = styled(Button)`
   width: 80px;
-  margin: 10px auto;
+  margin: 12px auto;
 `
