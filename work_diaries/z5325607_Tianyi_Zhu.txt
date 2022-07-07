@@ -8,3 +8,6 @@ We selected Flask for the backend. I continued to study Flask this week.
 Week 3
 We started to write the proposal. 
 I filled in the user storys of user banned list and movie banned list. I also drew a flow diagram for the user interface.
+
+Week 4
+I develop search & filter functions this week.

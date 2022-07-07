@@ -3,24 +3,27 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Content } from "antd/es/layout/layout";
 import { SearchOutlined as SearchIcon } from '@ant-design/icons';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom';
 import qs from 'query-string';
 import { Request } from "../api/request";
-import { useHistory } from 'react-router-dom';
 
 
 export function FilterBox(filterList) {
     const filterArr = filterList.filterList;
     const actors = filterArr.filter(item => item.category === 'Actor').slice(0, 5);
     const directors = filterArr.filter(item => item.category === 'Director').slice(0, 5);
-    const genres = filterArr.filter(item => item.category === 'Genre').slice(0, 5);
+    const genres = filterArr.filter(item => item.category === 'Genre');
     const { search } = useLocation();
     const url = `/search/${search}`;
     const history = useHistory();
     const onFinish = useCallback((values) => {
+        console.log("values", values);
         const actor_filter = values.actor ? values.actor.toString() : "";
         const director_filter = values.director ? values.director.toString() : "";
         const genre_filter = values.genre ? values.genre.toString() : "";
+        localStorage.setItem('actor_filter', actor_filter);
+        localStorage.setItem('director_filter', director_filter);
+        localStorage.setItem('genre_filter', genre_filter);
         const { name, genre, actor, description, director } = qs.parse(search.slice(1));
         const ContentData = {
             search_request: {

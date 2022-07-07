@@ -1,0 +1,8 @@
+﻿user_id,username,password,email,gender
+1,admin,adminadmin,admin@abc.com,male
+2,user01,user01user01,user01@abc.com,female
+3,user02,user02user02,user02@abc.com,male
+4,user03,user03user03,user03@abc.com,female
+5,user04,user04user04,user04@abc.com,female
+6,user05,user05user05,user05@abc.com,male
+7,user06,user06user06,user06@abc.com,female

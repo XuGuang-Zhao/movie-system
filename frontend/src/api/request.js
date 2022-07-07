@@ -14,10 +14,14 @@ export function Request(method, data, specificUrl,) {
     return fetch(`http://localhost:5000${specificUrl}`, action)
         .then(response => response.json())
         .then((data) => {
-            if (data.error) {
-                message.error(data.error);
+            if (data.message) {
+                message.error(data.message);
                 return;
             }
+            // if (data.error) {
+            //     message.error(data.error);
+            //     return;
+            // }
             return data;
         }).catch(e => message.error(e.message));
 }

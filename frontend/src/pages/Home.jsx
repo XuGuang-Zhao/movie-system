@@ -7,7 +7,7 @@ import qs from 'query-string';
 import { Request } from "../api/request";
 
 const Home = () => {
-    const { Content, Footer } = Layout;
+    const { Content } = Layout;
     const history = useHistory();
     const onFinish = useCallback((values) => {
         const { name, genre, actor, description, director } = values;
@@ -28,7 +28,7 @@ const Home = () => {
             }
         })
     }, [history])
-
+     
     return (
         <Layout>
             <div className='backgroundImg'>
@@ -50,7 +50,6 @@ const Home = () => {
                     </SearchContainer>
                 </Content>
             </div>
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
     )
 }
@@ -64,7 +63,7 @@ const SearchContainer = styled.div`
   border-radius: 55px;
   padding: 15px 0 0 75px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  margin: 50px auto 0;
+  margin: 100px auto 0;
   box-shadow: 0 10px 5px rgba(0, 0, 0, 0.5);
 `
 

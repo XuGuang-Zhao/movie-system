@@ -1,9 +1,13 @@
 .backgroundImg {
     background-size: cover;
-    height: 600px;
+    height: 700px;
     background-image: url(../img/background.jpeg);
 }
 
+.ant-row-rtl #components-layout-demo-top .logo {
+    float: right;
+    margin: 16px 0 16px 24px;
+}
 
 @media screen and (max-width: 400px) {
     .search-form {

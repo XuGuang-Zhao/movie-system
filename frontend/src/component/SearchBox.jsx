@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Button, Form, Input } from "antd";
 import { SearchOutlined as SearchIcon } from '@ant-design/icons';
 import { Content } from "antd/es/layout/layout";
-import { useHistory } from "react-router-dom";
+import { useLocation, useHistory } from 'react-router-dom';
 import { useCallback } from "react";
 import qs from 'query-string';
 import { Request } from "../api/request";
 
 export function SearchBox() {
     const history = useHistory();
+    const [form] = Form.useForm();
+    const { search } = useLocation();
+    const searchParam = qs.parse(search);
+    
+    useEffect(()=>{
+        form.setFieldsValue(searchParam);
+    }, [form, searchParam]);
+
     const onFinish = useCallback((values) => {
         const { name, genre, actor, description, director } = values;
         const queryStr = qs.stringify(values);
@@ -24,14 +32,18 @@ export function SearchBox() {
         Request('POST', ContentData, '/search/search').then(data => {
             if (data) {
                 history.push(url);
+                localStorage.setItem('actor_filter', "");
+                localStorage.setItem('director_filter', "");
+                localStorage.setItem('genre_filter', "");
                 localStorage.setItem('movie_list', JSON.stringify(data.movie_list));
                 localStorage.setItem('filter_list', JSON.stringify(data.filter_list));
             }
         })
     }, [history])
+
     return (
         <SearchContainer>
-            <SearchForm layout='inline' labelCol={{ span: 12 }} onFinish={onFinish}>
+            <SearchForm form={form} layout='inline' labelCol={{ span: 12 }} onFinish={onFinish}>
                 <SearchFormItem name="name" label='Movie Name: '>
                     <Input placeholder="Movie Name" />
                 </SearchFormItem>

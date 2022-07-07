@@ -3,3 +3,6 @@ Flask-SQLAlchemy
 Flask-Script
 PyMySQL
 Flask-restplus
+flask_restful
+flask_cors
+werkzeug==2.0.2

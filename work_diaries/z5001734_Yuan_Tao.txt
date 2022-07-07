@@ -15,3 +15,12 @@ We have written up all user stories
 We have finished the proposal - I have submitted the proposal
 I have started to code the Flask db models used in the project
 I have downloaded IMDb public data to be used for mock
+
+Week 4
+The team has built 90% of the search functionality - frontend for filter and ordering incomplete
+I have contributed to backend build:
+Complete PROJ-101 to set up the database model and SQLite database for movie information, scraped from IMDb
+Complete PROJ-102 to set up the backend Flask structure to enable backend API build
+Help out on PROJ-66 to set up a search function that allows basic LIKE-based search and designed the input structure and output structure
+Help out on PROJ-82 and PROJ-91 by designing the output structure ready for frontend
+Guide the team on GIT usage
